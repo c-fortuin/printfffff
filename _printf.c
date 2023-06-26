@@ -52,9 +52,3 @@ int _printf(const char *format, ...)
 
 	return count;
 }
-
-int main()
-{
-	printf("The number of characters printed is: %d.\n", _printf);
-	return 0;
-}
