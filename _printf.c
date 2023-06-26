@@ -52,3 +52,9 @@ int _printf(const char *format, ...)
 
 	return count;
 }
+
+int main()
+{
+	_printf("Goodmorning, %s. Your name starts with a %c.\n", "Chrisli", 'C');
+	return 0;
+}
