@@ -13,7 +13,7 @@ int _printf(const char *format, ...)
 
 	while (*format != '\0')
 	{
-		if (*format == '&')
+		if (*format == '%')
 		{
 			format++;
 
