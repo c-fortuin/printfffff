@@ -55,6 +55,6 @@ int _printf(const char *format, ...)
 
 int main()
 {
-	_printf("Goodmorning, %s. Your name starts with a %c.\n", "Chrisli", 'C');
+	printf("The number of characters printed is: %d.\n", _printf);
 	return 0;
 }
