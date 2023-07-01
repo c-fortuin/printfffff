@@ -1,24 +1,22 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdarg.h>
 
 void print_buffer(char buffer[], int *buff_ind);
 
 /**
- * _printf- function that produces output according to a format
- * @format: Format
- * Return: Printed characters
+ * _printf - function that produces output according to a format
+ * @format: format
+ * Return: Printed character
  */
 int _printf(const char *format, ...)
 {
 	int i;
-	int printed = 0;
-	int printed_chars = 0;
+        int printed = 0;
+        int printed_chars = 0;
 	int flags;
-	int width;
-	int precision;
-	int size;
-	int buff_ind = 0;
+        int width;
+        int precision;
+        int size;
+        int buff_ind = 0;
 	va_list list;
 	char buffer[BUFF_SIZE];
 
@@ -34,6 +32,7 @@ int _printf(const char *format, ...)
 			buffer[buff_ind++] = format[i];
 			if (buff_ind == BUFF_SIZE)
 				print_buffer(buffer, &buff_ind);
+			/* write(1, &format[i], 1);*/
 			printed_chars++;
 		}
 		else
@@ -43,24 +42,26 @@ int _printf(const char *format, ...)
 			width = get_width(format, &i, list);
 			precision = get_precision(format, &i, list);
 			size = get_size(format, &i);
-			i++;
-			printed = handle_print(format, &i, list, buffer, flags,
-					width, precision, size);
+			++i;
+			printed = handle_print(format, &i, list, buffer,
+				flags, width, precision, size);
 			if (printed == -1)
 				return (-1);
 			printed_chars += printed;
 		}
 	}
+
 	print_buffer(buffer, &buff_ind);
 
 	va_end(list);
 
 	return (printed_chars);
 }
+
 /**
- * print_buffer- Prints contents of buffer
- * @buffer: Array of chars
- * @buff_ind: Index to add next char
+ * print_buffer - Prints the contents of the buffer 
+ * @buffer: Array of characters
+ * @buff_ind: Index 
  */
 void print_buffer(char buffer[], int *buff_ind)
 {
@@ -68,6 +69,4 @@ void print_buffer(char buffer[], int *buff_ind)
 		write(1, &buffer[0], *buff_ind);
 
 	*buff_ind = 0;
-}
-
-	
+}	
